@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/Kavinjsir/return/array"
 )
@@ -17,6 +18,12 @@ func main() {
 
 	fmt.Print(myArr)
 
+	value, err := myArr.Get(11)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(value)
+
 	myArr = array.NewArray(
 		array.SetCapcity(20),
 	)
@@ -26,5 +33,11 @@ func main() {
 	}
 
 	fmt.Print(myArr)
+
+	value, err = myArr.Get(11)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(value)
 
 }

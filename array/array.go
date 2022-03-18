@@ -65,6 +65,14 @@ func (arr *MyArray) GetCapacity() int {
 	return cap(arr.data)
 }
 
+func (arr *MyArray) Get(index int) (int, error) {
+	if index < 0 || index >= arr.size {
+		return 0, errors.New("Index out of range.")
+	}
+
+	return arr.data[index], nil
+}
+
 func (arr *MyArray) GetSize() int {
 	return arr.size
 }
