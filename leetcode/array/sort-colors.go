@@ -1,31 +1,16 @@
 // https://leetcode.com/problems/sort-colors/
 func sortColors(nums []int) {
-	zero, one, two, idx := 0, 0, 0, 0
-	for _, element := range nums {
-		if element == 2 {
-			two += 1
-		} else if element == 1 {
-			one += 1
+	zeroPos, twoPos, idx := -1, len(nums), 0
+	for idx < twoPos {
+		if nums[idx] == 1 {
+			idx++
+		} else if nums[idx] == 0 {
+			zeroPos++
+			nums[zeroPos], nums[idx] = nums[idx], nums[zeroPos]
+			idx++
 		} else {
-			zero += 1
+			twoPos--
+			nums[twoPos], nums[idx] = nums[idx], nums[twoPos]
 		}
-	}
-
-	for zero > 0 {
-		nums[idx] = 0
-		zero--
-		idx++
-	}
-
-	for one > 0 {
-		nums[idx] = 1
-		one--
-		idx++
-	}
-
-	for two > 0 {
-		nums[idx] = 2
-		two--
-		idx++
 	}
 }
