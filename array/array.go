@@ -79,7 +79,7 @@ func (arr *MyArray) Remove(index int) (targetElement int, err error) {
 
 	// Resize array in "lazy" mode
 	// Reduce amortized time complexity
-	if arr.size*4 < cap(arr.data) {
+	if arr.size*4 < cap(arr.data) && cap(arr.data)/2 > 0 {
 		targetLength := cap(arr.data) / 2
 		arr.Resize(targetLength)
 	}
