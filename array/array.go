@@ -77,6 +77,11 @@ func (arr *MyArray) Remove(index int) (targetElement int, err error) {
 
 	arr.size = arr.size - 1
 
+	if arr.size*4 < cap(arr.data) {
+		targetLength := cap(arr.data) / 2
+		arr.Resize(targetLength)
+	}
+
 	return
 }
 
@@ -91,12 +96,15 @@ func (arr *MyArray) RemoveLast() (targetElement int, err error) {
 // TODO: Design func RemoveElement(targetElement int)
 
 func (arr *MyArray) Insert(element int, index int) error {
-	if arr.size == cap(arr.data) {
-		return errors.New("Exceed Capacity Limit.")
-	}
-
 	if index > arr.size || index < 0 {
 		return errors.New("Index out of range.")
+	}
+
+	if arr.size == cap(arr.data) {
+		err := arr.Resize(2 * cap(arr.data))
+		if err != nil {
+			return errors.New(fmt.Sprintf("Failed to expand array for insertion:\n%v", err))
+		}
 	}
 
 	for pos := arr.size; pos > index; pos-- {
@@ -135,6 +143,18 @@ func (arr *MyArray) GetSize() int {
 
 func (arr *MyArray) IsEmpty() bool {
 	return arr.size == 0
+}
+
+func (arr *MyArray) Resize(targetLength int) error {
+	if targetLength <= 0 {
+		return errors.New("Illegal resize length.(Should be positive integer)")
+	}
+
+	newData := make([]int, targetLength)
+	copy(newData, arr.data)
+	arr.data = newData
+
+	return nil
 }
 
 func (arr *MyArray) GetMeta() string {

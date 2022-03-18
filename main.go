@@ -45,4 +45,15 @@ func main() {
 	}
 	fmt.Println(myArr)
 
+	for element := 100; element < 133; element++ {
+		myArr.AddLast(element)
+	}
+	fmt.Print(myArr)
+
+	size := myArr.GetSize()
+	for i := 0; i < size-4; i++ {
+		myArr.RemoveLast()
+	}
+	fmt.Print(myArr)
+
 }
