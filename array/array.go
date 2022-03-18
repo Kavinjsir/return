@@ -3,6 +3,7 @@ package array
 import (
 	"errors"
 	"fmt"
+	"strings"
 )
 
 type MyArray struct {
@@ -72,6 +73,30 @@ func (arr *MyArray) IsEmpty() bool {
 	return arr.size == 0
 }
 
+func (arr *MyArray) GetMeta() string {
+	return fmt.Sprintf("Capacity: %v, Size: %v, IsEmpty: %v\n", cap(arr.data), arr.size, arr.IsEmpty())
+}
+
+func (arr *MyArray) String() string {
+	var sb strings.Builder
+
+	sb.WriteString(arr.GetMeta())
+
+	sb.WriteString("[ ")
+
+	for i, val := range arr.data {
+		sb.WriteString(fmt.Sprintf("%v", val))
+
+		if i != arr.size-1 {
+			sb.WriteString(", ")
+		}
+	}
+
+	sb.WriteString(" ]\n")
+
+	return sb.String()
+}
+
 func (arr *MyArray) ShowMeta() {
-	fmt.Printf("Capacity: %v, Size: %v, IsEmpty: %v\n", cap(arr.data), arr.size, arr.IsEmpty())
+	fmt.Print(arr.GetMeta())
 }

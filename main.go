@@ -1,15 +1,17 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/Kavinjsir/return/array"
 )
 
 func main() {
 	myArr := array.NewArray()
-	myArr.ShowMeta()
+	fmt.Print(myArr)
 
 	myArr = array.NewArray(
 		array.SetCapcity(20),
 	)
-	myArr.ShowMeta()
+	fmt.Print(myArr)
 }
