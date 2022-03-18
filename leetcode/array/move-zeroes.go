@@ -1,17 +1,12 @@
 // https://leetcode.com/problems/move-zeroes
 func moveZeroes(nums []int) {
 	size := len(nums)
-
-	newPos := 0
-	for pos := 0; pos < size; pos++ {
-		if nums[pos] != 0 {
-			nums[newPos] = nums[pos]
-			newPos++
+	for p, k := 0, 0; p < size; p++ {
+		if nums[p] != 0 {
+			if k != p {
+				nums[k], nums[p] = nums[p], nums[k]
+			}
+			k++
 		}
-	}
-
-	for newPos < size {
-		nums[newPos] = 0
-		newPos++
 	}
 }
