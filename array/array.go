@@ -54,11 +54,11 @@ func (arr *MyArray) Insert(element int, index int) error {
 }
 
 func (arr *MyArray) AddFirst(element int) error {
-	return arr.Insert(0, element)
+	return arr.Insert(element, 0)
 }
 
 func (arr *MyArray) AddLast(element int) error {
-	return arr.Insert(arr.size, element)
+	return arr.Insert(element, arr.size)
 }
 
 func (arr *MyArray) GetCapacity() int {
