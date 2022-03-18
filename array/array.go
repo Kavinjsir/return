@@ -34,13 +34,69 @@ func SetCapcity(capacity int) SetArrayOption {
 	}
 }
 
+func (arr *MyArray) Set(element int, index int) error {
+	if index >= arr.size || index < 0 {
+		return errors.New("Index out of range.")
+	}
+
+	arr.data[index] = element
+	return nil
+}
+
+func (arr *MyArray) Contains(element int) bool {
+	for _, value := range arr.data {
+		if value == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+func (arr *MyArray) Find(element int) int {
+	for idx, value := range arr.data {
+		if value == element {
+			return idx
+		}
+	}
+
+	return -1
+}
+
+func (arr *MyArray) Remove(index int) (targetElement int, err error) {
+	if index < 0 || index >= arr.size {
+		return 0, errors.New("Index out of range.")
+	}
+
+	targetElement = arr.data[index]
+	err = nil
+
+	for i := index + 1; i < arr.size; i++ {
+		arr.data[i-1] = arr.data[i]
+	}
+
+	arr.size = arr.size - 1
+
+	return
+}
+
+func (arr *MyArray) RemoveFirst() (targetElement int, err error) {
+	return arr.Remove(0)
+}
+
+func (arr *MyArray) RemoveLast() (targetElement int, err error) {
+	return arr.Remove(arr.size - 1)
+}
+
+// TODO: Design func RemoveElement(targetElement int)
+
 func (arr *MyArray) Insert(element int, index int) error {
 	if arr.size == cap(arr.data) {
 		return errors.New("Exceed Capacity Limit.")
 	}
 
 	if index > arr.size || index < 0 {
-		return errors.New("Index outof Range.")
+		return errors.New("Index out of range.")
 	}
 
 	for pos := arr.size; pos > index; pos-- {
@@ -93,6 +149,10 @@ func (arr *MyArray) String() string {
 	sb.WriteString("[ ")
 
 	for i, val := range arr.data {
+		if i >= arr.size {
+			break
+		}
+
 		sb.WriteString(fmt.Sprintf("%v", val))
 
 		if i != arr.size-1 {
