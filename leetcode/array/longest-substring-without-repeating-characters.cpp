@@ -15,3 +15,21 @@ public:
       return res;
     }
 };
+
+/*
+ * Another solution with similar performance:
+ * 3ms, 6.7MB
+**  int lengthOfLongestSubstring(string s) {
+**    int m[256];
+**    memset(m, -1, sizeof(m));
+**
+**    int l = 0, r = 0, count = 0, vol = s.size();
+**    while (r < vol) {
+**      if (m[s[r]] > -1) { l = max(l, m[s[r]] + 1); }
+**      count = max(r - l + 1, count);
+**      m[s[r]] = r;
+**      r++;
+**    }
+**    return count;
+**  }
+*/
