@@ -10,8 +10,9 @@ import (
 )
 
 func main() {
-	var myQueue queue.Queue = queue.NewArrayQueue()
-	for i := 0; i < 10; i++ {
+	// var myQueue queue.Queue = queue.NewArrayQueue()
+	var myQueue queue.Queue = queue.NewLoopQueue()
+	for i := 0; i < 11; i++ {
 		myQueue.Enqueue(i)
 		fmt.Println(myQueue)
 
