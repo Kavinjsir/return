@@ -11,7 +11,9 @@ import (
 
 func main() {
 	// var myQueue queue.Queue = queue.NewArrayQueue()
-	var myQueue queue.Queue = queue.NewLoopQueue()
+	var myQueue queue.Queue = queue.NewLoopQueue(
+		queue.SetLoopQueueCapcity(3),
+	)
 	for i := 0; i < 11; i++ {
 		myQueue.Enqueue(i)
 		fmt.Println(myQueue)
