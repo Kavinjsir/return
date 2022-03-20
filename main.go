@@ -5,23 +5,37 @@ import (
 	// "log"
 
 	// "github.com/Kavinjsir/return/array"
-	"github.com/Kavinjsir/return/stack"
+	// "github.com/Kavinjsir/return/stack"
+	"github.com/Kavinjsir/return/queue"
 )
 
 func main() {
-	var myStack stack.Stack
+	var myQueue queue.Queue = queue.NewArrayQueue()
+	for i := 0; i < 10; i++ {
+		myQueue.Enqueue(i)
+		fmt.Println(myQueue)
 
-	myStack = stack.NewArrayStack(
-		stack.SetCapcity(5),
-	)
-
-	for i := 0; i < 5; i++ {
-		myStack.Push(i)
-		fmt.Println(myStack)
+		if i%3 == 2 {
+			myQueue.Dequeue()
+			fmt.Println()
+		}
 	}
 
-	myStack.Pop()
-	fmt.Println(myStack)
+	/*
+		var myStack stack.Stack
+
+		myStack = stack.NewArrayStack(
+			stack.SetCapcity(5),
+		)
+
+		for i := 0; i < 5; i++ {
+			myStack.Push(i)
+			fmt.Println(myStack)
+		}
+
+		myStack.Pop()
+		fmt.Println(myStack)
+	*/
 
 	/*
 		myArr := array.NewArray(
