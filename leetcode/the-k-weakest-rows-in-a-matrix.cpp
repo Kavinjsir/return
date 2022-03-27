@@ -37,3 +37,27 @@ public:
     return res;
   }
 };
+
+/**
+ * Yet another simple approach, but slower
+class Solution {
+public:
+  vector<int> kWeakestRows(vector<vector<int>> &m, int k) {
+    int c = 0, rl = m.size(), cl = m[0].size();
+
+    vector<int> res;
+
+    set<pair<int, int>> s;
+    for (int i = 0; i < rl; i++) {
+      c = accumulate(m[i].begin(), m[i].end(), 0);
+      s.insert(make_pair(c, i));
+    }
+
+    for (auto it = s.begin(); it != s.end(), k > 0; k--, it++) {
+      res.push_back(it->second);
+    }
+
+    return res;
+  }
+};
+*/
