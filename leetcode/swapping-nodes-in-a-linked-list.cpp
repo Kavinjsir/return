@@ -11,25 +11,25 @@
 class Solution {
 public:
   ListNode *swapNodes(ListNode *head, int k) {
-    vector<ListNode *> record;
-    ListNode *l = head;
-    ListNode *kn;
-    int i = 1;
-    while (l) {
-      if (i == k) {
-        kn = l;
+    ListNode *left = head;
+    ListNode *right = head;
+    ListNode *curr = head;
+
+    int counter = 1;
+    while (curr != NULL) {
+      if (counter < k) {
+        left = left->next;
       }
-      l = l->next;
-      i++;
+      if (counter > k) {
+        right = right->next;
+      }
+      curr = curr->next;
+      counter++;
     }
-    i = i - k;
-    l = head;
-    while (--i) {
-      l = l->next;
-    }
-    int t = l->val;
-    l->val = kn->val;
-    kn->val = t;
+
+    counter = left->val;
+    left->val = right->val;
+    right->val = counter;
     return head;
   }
 };
