@@ -11,22 +11,15 @@
 class Solution {
 public:
   ListNode *swapNodes(ListNode *head, int k) {
-    vector<int> record;
+    vector<ListNode *> record;
     ListNode *l = head;
     while (l) {
-      record.push_back(l->val);
+      record.push_back(l);
       l = l->next;
     }
-    l = head;
-    int len = record.size();
-    for (int i = 0; i < len; i++) {
-      if (i == k - 1) {
-        l->val = record[len - k];
-      } else if (i == len - k) {
-        l->val = record[k - 1];
-      }
-      l = l->next;
-    }
+    int len = record.size(), tmp = record[k - 1]->val;
+    record[k - 1]->val = record[len - k]->val;
+    record[len - k]->val = tmp;
     return head;
   }
 };
