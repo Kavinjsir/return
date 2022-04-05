@@ -13,13 +13,23 @@ public:
   ListNode *swapNodes(ListNode *head, int k) {
     vector<ListNode *> record;
     ListNode *l = head;
+    ListNode *kn;
+    int i = 1;
     while (l) {
-      record.push_back(l);
+      if (i == k) {
+        kn = l;
+      }
+      l = l->next;
+      i++;
+    }
+    i = i - k;
+    l = head;
+    while (--i) {
       l = l->next;
     }
-    int len = record.size(), tmp = record[k - 1]->val;
-    record[k - 1]->val = record[len - k]->val;
-    record[len - k]->val = tmp;
+    int t = l->val;
+    l->val = kn->val;
+    kn->val = t;
     return head;
   }
 };
