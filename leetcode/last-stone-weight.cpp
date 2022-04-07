@@ -1,7 +1,7 @@
 class Solution {
 public:
   int lastStoneWeight(vector<int> &stones) {
-    int l = stones.size(), current = 0;
+    int l = stones.size(), current = 0, t = 0, s = 0;
     if (l == 0)
       return current;
 
@@ -11,19 +11,19 @@ public:
     }
 
     while (!q.empty()) {
-      int t = q.top();
+      t = q.top();
       q.pop();
       if (q.empty()) {
         return t;
       }
-      int s = q.top();
+
+      s = q.top();
       q.pop();
-      if (s == t) {
-        if (q.empty())
-          return 0;
-        continue;
-      };
-      q.push(t - s);
+      t -= s;
+      if (q.empty())
+        return t;
+      if (t != 0)
+        q.push(t);
     }
 
     return q.top();
