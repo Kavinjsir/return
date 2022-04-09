@@ -4,7 +4,7 @@ public:
   struct myComparator {
   public:
     bool operator()(const pi &pi1, const pi &pi2) {
-      return pi2.second > pi1.second;
+      return pi1.second > pi2.second;
     }
   };
 
@@ -16,14 +16,15 @@ public:
     priority_queue<pi, vector<pi>, myComparator> pq;
     for (const auto &p : record) {
       pq.push(p);
+      if (pq.size() > k) {
+        pq.pop();
+      }
     }
 
     vector<int> result;
-    while (k > 0 && !pq.empty()) {
-      pi p = pq.top();
-      result.push_back(p.first);
+    while (!pq.empty()) {
+      result.push_back(pq.top().first);
       pq.pop();
-      k--;
     }
     return result;
   }
