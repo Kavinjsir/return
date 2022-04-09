@@ -1,31 +1,23 @@
-typedef pair<int, int> pi;
 class Solution {
 public:
-  struct myComparator {
-  public:
-    bool operator()(const pi &pi1, const pi &pi2) {
-      return pi1.second > pi2.second;
-    }
-  };
-
   vector<int> topKFrequent(vector<int> &nums, int k) {
-    unordered_map<int, int> record;
-    for (auto i : nums) {
-      record[i]++;
-    }
-    priority_queue<pi, vector<pi>, myComparator> pq;
-    for (const auto &p : record) {
-      pq.push(p);
-      if (pq.size() > k) {
-        pq.pop();
+
+    unordered_map<int, int> freq;
+    for (auto num : nums)
+      freq[num]++;
+
+    vector<vector<int>> buckets(nums.size() + 1);
+    for (auto [a, b] : freq)
+      buckets[b].push_back(a);
+
+    vector<int> res;
+    for (int i = nums.size(); k; i--) {
+      for (auto a : buckets[i]) {
+        res.push_back(a);
+        k--;
       }
     }
 
-    vector<int> result;
-    while (!pq.empty()) {
-      result.push_back(pq.top().first);
-      pq.pop();
-    }
-    return result;
+    return res;
   }
 };
