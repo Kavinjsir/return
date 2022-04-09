@@ -1,18 +1,12 @@
 class KthLargest {
 public:
   vector<int> before;
-  vector<int> after;
   int size;
   KthLargest(int k, vector<int> &nums) {
     sort(nums.begin(), nums.end(), greater<int>());
     int i = 0, l = nums.size();
     while (i < k && i < l) {
-      before.push_back(nums[i]);
-      i++;
-    }
-    while (i < l) {
-      after.push_back(nums[i]);
-      i++;
+      before.push_back(nums[i++]);
     }
     make_heap(before.begin(), before.end(), greater<int>{});
     size = k;
