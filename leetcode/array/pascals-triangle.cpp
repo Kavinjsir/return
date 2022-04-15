@@ -1,32 +1,17 @@
 class Solution {
 public:
   vector<vector<int>> generate(int numRows) {
-    vector<vector<int>> r;
-    vector<int> one = {1};
-    r.push_back(one);
-    if (numRows == 1)
-      return r;
+    vector<vector<int>> ret;
 
-    vector<int> two = {1, 1};
-    r.push_back(two);
-    if (numRows == 2)
-      return r;
-
-    numRows -= 2;
-    int l = r.size() - 1;
-    while (numRows > 0) {
-      vector<int> n;
-      n.push_back(1);
-      for (int i = 1; i < r[l].size(); i++) {
-        int v = r[l][i] + r[l][i - 1];
-        n.push_back(v);
+    for (int i = 0; i < numRows; i++) {
+      vector<int> row(i + 1, 1);
+      for (int j = 1; j < i; j++) {
+        row[j] = ret[i - 1][j] + ret[i - 1][j - 1];
       }
-      n.push_back(1);
-      r.push_back(n);
 
-      numRows--;
-      l = r.size() - 1;
+      ret.push_back(row);
     }
-    return r;
+
+    return ret;
   }
 };
