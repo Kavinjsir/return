@@ -1,19 +1,31 @@
 class Solution {
 public:
-  TreeNode *traverse(TreeNode *origin, TreeNode *record) {
-    if (!origin)
-      return record;
-
-    TreeNode *nr = traverse(origin->left, record);
-
-    nr->right = new TreeNode(origin->val);
-
-    return traverse(origin->right, nr->right);
-  }
-
   TreeNode *increasingBST(TreeNode *root) {
-    TreeNode *pre = new TreeNode();
-    traverse(root, pre);
-    return pre->right;
+
+    TreeNode *prev = NULL, *node = root;
+
+    while (node != NULL) {
+
+      if (node->left == NULL) {
+        prev = node;
+        node = node->right;
+        continue;
+      }
+
+      TreeNode *child = node->left;
+      TreeNode *left = child->right;
+
+      child->right = node;
+      node->left = left;
+
+      if (prev == NULL)
+        root = child;
+      else
+        prev->right = child;
+
+      node = child;
+    }
+
+    return root;
   }
 };
