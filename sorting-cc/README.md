@@ -10,3 +10,6 @@
 - `Test 1`: commont test with random arrays of 1,000,000 elements
 - `Test 2`: arrays with nearly sorted elements
 - `Test 3`: arrays with massive duplicate elements
+
+<img src="result1.png"/>
+<img src="result2.png"/>
