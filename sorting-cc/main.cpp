@@ -1,6 +1,7 @@
 #include "QuickSort.h"
 #include "QuickSort2.h"
-#include "QuickSortRaw.h"
+#include "QuickSort3.h"
+// #include "QuickSortRaw.h"
 #include "SortTestHelper.h"
 #include <iostream>
 
@@ -18,9 +19,10 @@ int main() {
   int *arr2 = SortTestHelper::copyIntArray(arr1, n);
   int *arr3 = SortTestHelper::copyIntArray(arr1, n);
 
-  SortTestHelper::testSort("Quick Sort Raw", quickSortRaw, arr1, n);
-  SortTestHelper::testSort("Quick Sort", quickSort, arr2, n);
-  SortTestHelper::testSort("Quick Sort 2 Way", quickSort2, arr3, n);
+  // SortTestHelper::testSort("Quick Sort Raw", quickSortRaw, arr1, n);
+  SortTestHelper::testSort("Quick Sort", quickSort, arr1, n);
+  SortTestHelper::testSort("Quick Sort 2 Way", quickSort2, arr2, n);
+  SortTestHelper::testSort("Quick Sort 3 Way", quickSort3, arr3, n);
 
   delete[] arr1;
   delete[] arr2;
@@ -36,9 +38,10 @@ int main() {
   arr2 = SortTestHelper::copyIntArray(arr1, n);
   arr3 = SortTestHelper::copyIntArray(arr1, n);
 
-  SortTestHelper::testSort("Quick Sort Raw", quickSortRaw, arr1, n);
-  SortTestHelper::testSort("Quick Sort", quickSort, arr2, n);
-  SortTestHelper::testSort("Quick Sort 2 Way", quickSort2, arr3, n);
+  // SortTestHelper::testSort("Quick Sort Raw", quickSortRaw, arr1, n);
+  SortTestHelper::testSort("Quick Sort", quickSort, arr1, n);
+  SortTestHelper::testSort("Quick Sort 2 Way", quickSort2, arr2, n);
+  SortTestHelper::testSort("Quick Sort 3 Way", quickSort3, arr3, n);
 
   delete[] arr1;
   delete[] arr2;
@@ -53,9 +56,10 @@ int main() {
   arr2 = SortTestHelper::copyIntArray(arr1, n);
   arr3 = SortTestHelper::copyIntArray(arr1, n);
 
-  SortTestHelper::testSort("Quick Sort Raw", quickSortRaw, arr1, n);
-  SortTestHelper::testSort("Quick Sort", quickSort, arr2, n);
-  SortTestHelper::testSort("Quick Sort 2 Way", quickSort2, arr3, n);
+  // SortTestHelper::testSort("Quick Sort Raw", quickSortRaw, arr1, n);
+  // SortTestHelper::testSort("Quick Sort", quickSort, arr1, n);
+  SortTestHelper::testSort("Quick Sort 2 Way", quickSort2, arr2, n);
+  SortTestHelper::testSort("Quick Sort 2 Way", quickSort3, arr3, n);
 
   delete[] arr1;
   delete[] arr2;
