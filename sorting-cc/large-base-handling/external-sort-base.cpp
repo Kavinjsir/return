@@ -1,4 +1,4 @@
-#include "QuickSort3.h"
+#include "../QuickSort3.h"
 #include <_stdio.h>
 #include <climits>
 #include <cstdio>
@@ -85,7 +85,7 @@ void mergeFiles(char *output_file, int n, int k) {
   MinHeapNode *harr = new MinHeapNode[k];
   int i;
   for (i = 0; i < k; i++) {
-    if (fscanf(in[i], "%d", &harr[i].element) != 1) {
+    if (fscanf(in[i], "%d ", &harr[i].element) != 1) {
       break;
     }
     harr[i].i = i;
@@ -96,9 +96,9 @@ void mergeFiles(char *output_file, int n, int k) {
 
   while (count != i) {
     MinHeapNode root = hp.getMin();
-    fprintf(out, "%d", root.element);
+    fprintf(out, "%d ", root.element);
 
-    if (fscanf(in[root.i], "%d", &root.element) != 1) {
+    if (fscanf(in[root.i], "%d ", &root.element) != 1) {
       root.element = INT_MAX;
       count++;
     }
@@ -133,7 +133,7 @@ void createInitialRuns(char *input_file, int run_size, int num_ways) {
   int i;
   while (more_input) {
     for (i = 0; i < run_size; i++) {
-      if (fscanf(in, "%d", &arr[i]) != 1) {
+      if (fscanf(in, "%d ", &arr[i]) != 1) {
         more_input = false;
         break;
       }
@@ -141,7 +141,7 @@ void createInitialRuns(char *input_file, int run_size, int num_ways) {
     quickSort3(arr, i);
 
     for (int j = 0; j < i; j++) {
-      fprintf(out[next_output_file], "%d", arr[j]);
+      fprintf(out[next_output_file], "%d ", arr[j]);
     }
     next_output_file++;
   }
@@ -172,12 +172,10 @@ int main() {
   srand(time(NULL));
 
   for (int i = 0; i < num_ways * run_size; i++) {
-    fprintf(in, "%d", rand());
+    fprintf(in, "%d ", rand());
   }
 
   fclose(in);
 
   externalSort(input_file, output_file, num_ways, run_size);
-
-  return 0;
 }
