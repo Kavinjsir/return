@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"errors"
 	"fmt"
 	"os"
@@ -42,9 +43,12 @@ func WriteIntArrToFile(path string, arr []int) error {
 
 	defer f.Close()
 
+	w := bufio.NewWriter(f)
 	for _, v := range arr {
-		fmt.Fprintf(f, "%v ", v)
+		fmt.Fprintf(w, "%v ", v)
 	}
+
+	w.Flush()
 
 	return nil
 
