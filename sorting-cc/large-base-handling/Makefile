@@ -1,0 +1,4 @@
+.PHONY: clean
+clean: ## Remove files generated from the program
+	rm 0 1 2 3 4 5 6 7 8 9 input.txt output.txt t
+
