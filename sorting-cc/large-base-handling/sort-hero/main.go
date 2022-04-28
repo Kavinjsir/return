@@ -13,7 +13,10 @@ import (
 )
 
 const ChunkNum = 10
+
 const ChunkSize = 1000000
+
+// const ChunkSize = 10
 
 const Asset = "asset"
 const Input = Asset + "/input"
@@ -151,8 +154,7 @@ func mergeChunks(fileCount int, folder string, outputPath string) error {
 	return nil
 }
 
-func main() {
-	prepareTestData(ChunkNum, ChunkSize, Asset, Input)
+func externalSort() {
 
 	fileCount, err := createChunks(Input, ChunkSize, Asset)
 	if err != nil {
@@ -165,4 +167,9 @@ func main() {
 		fmt.Println("Error happens when merginc chunks:\n" + err.Error())
 		return
 	}
+}
+
+func main() {
+	prepareTestData(ChunkNum, ChunkSize, Asset, Input)
+	externalSort()
 }
