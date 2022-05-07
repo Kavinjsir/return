@@ -1,42 +1,31 @@
 class Solution {
 public:
-  bool isValidSudoku(vector<vector<char>>& board) {
-    unordered_map<char, int> record;
-    int i, j, val, k, z;
+  bool isValidSudoku(vector<vector<char>> &board) {
+    int hang[9][10] = {}, lie[9][10] = {}, ge[9][10] = {};
+    int val, pos;
 
-    for( i = 0; i < 9; i++){
-      for( j = 0; j < 9; j++){
-        if(board[i][j] == '.') continue; 
-        if(record.find(board[i][j]) != record.end()) return false;
-        record[board[i][j]] = 1;
-      }
-      record.clear();
-    
+    for (int i = 0; i < 9; i++) {
+      for (int j = 0; j < 9; j++) {
+        val = board[i][j] - '0';
 
-    for( j = 0; j < 9; j++){
-      for( i = 0; i < 9; i++){
-        if(board[i][j] == '.') continue; 
-        if(record.find(board[i][j]) != record.end()) return false;
-        record[board[i][j]] = 1;
-      }
-      record.clear();
-    }
+        if (val == -2)
+          continue;
 
-    for( i = 0; i < 9; i += 3){
-      for( j= 0; j < 9; j += 3){
-        
-        for( k = 0; k < 3; k++){
-          for( z = 0; z < 3; z++){
-            val = board[i+k][j+z];
-            if(val == '.') continue; 
-            if(record.find(val) != record.end()) return false;
-            record[val] = 1;
-          }
-        }
-        record.clear();
+        if (hang[i][val] == 1)
+          return false;
+        if (lie[j][val] == 1)
+          return false;
+
+        pos = (i / 3) * 3 + j / 3;
+        if (ge[pos][val] == 1)
+          return false;
+
+        hang[i][val] = 1;
+        lie[j][val] = 1;
+        ge[pos][val] = 1;
       }
     }
 
-    return true;    
+    return true;
   }
 };
